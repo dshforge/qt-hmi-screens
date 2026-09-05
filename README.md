@@ -69,9 +69,9 @@ hides the amplitude change that mattered.
 Boot to first frame is **475 ms** against the 2000 ms most automotive
 programmes allow between ignition and a correct cluster.
 
-It was 1100 ms until the TIMING screen showed it. A `StackLayout`
-instantiates every child up front, so all nine screens were being built
-before the first frame. Loading them on first selection instead:
+A `StackLayout` instantiates every child up front, so a nine screen app
+builds all nine before it draws one. The TIMING screen is what makes that
+visible. Loading them on first selection instead:
 
 | | run 1 | run 2 | run 3 |
 |---|---|---|---|
@@ -85,10 +85,11 @@ Cold starts, same binary, only `Loader.active` changed.
 `src/typography.h` resolves the font against families the machine
 actually has and logs its choice at startup.
 
-This started out naming "Segoe UI" and "Consolas" in 103 places. Both are
-Windows-only. It built, ran at 60 fps and looked completely fine. On a
-Mac or a Linux box every one of those would have quietly swapped for
-something else, with nothing in the log to tell you why.
+Name "Segoe UI" and "Consolas" directly, the way most Qt UI code does,
+and it builds, runs at 60 fps and looks completely fine. Both are
+Windows-only. On a Mac or a Linux box every one of those silently swaps
+for whatever the platform picks, with nothing in the log to say why. This
+codebase had 103 such references before the resolver went in.
 
 ## Build
 
