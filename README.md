@@ -7,6 +7,17 @@ A reference project for embedded and desktop HMI work: what the same
 codebase looks like when each industry's own conventions are respected
 rather than recoloured.
 
+## In motion
+
+Captured from the running application, not mocked up. `--record` writes a
+frame sequence in a single run, so the motion is continuous rather than
+stills stitched together from separate launches.
+
+| Instrument cluster | Patient monitor |
+|---|---|
+| ![Cluster](docs/cluster.gif) | ![Patient monitor](docs/patient.gif) |
+| Needles, telltales and gear on a 30 second drive cycle | ECG, plethysmograph and respiration sweeping live |
+
 ## The screens
 
 | Screen | Industry | What it demonstrates |
@@ -14,14 +25,33 @@ rather than recoloured.
 | Cluster | Automotive | ISO 2575 telltale colours, where red, amber, green and blue are a specification and not a palette |
 | Heavy | Off-highway plant | Same components, operator priorities: hydraulic temperature and load before road speed |
 | Climate | In-cabin controls | Touch targets sized for a moving vehicle |
-| Patient | Medical devices | ECG built from a real PQRST complex, clinical colour convention, every value shown with its alarm limits |
+| Patient | Medical devices | ECG from a real PQRST complex, clinical colour convention, every value shown with its alarm limits |
 | Spectrum | Test and measurement | Logarithmic dBm scale, 10x8 graticule, a marker that reads its value off the trace it draws |
 | Plant | Process control | A mimic, not a dashboard: geometry carries the information and colour is state |
 | Fleet | Telematics | `QAbstractListModel` with named roles behind a `ListView` |
 | CAN bus | Diagnostics | Decoded signals with rolling history and custom scene-graph sparklines |
 | Timing | All of them | The application measuring its own render loop |
 
-`--solo` drops the chrome so one screen fills the window.
+### Automotive, off-highway, in-cabin
+
+| Instrument cluster | Excavator panel | Dual zone climate |
+|---|---|---|
+| ![Cluster](docs/cluster.png) | ![Excavator panel](docs/heavy.png) | ![Climate](docs/climate.png) |
+
+### Medical, test and measurement, process
+
+| Patient monitor | Spectrum analyser | Reactor mimic |
+|---|---|---|
+| ![Patient monitor](docs/patient.png) | ![Spectrum analyser](docs/spectrum.png) | ![Reactor mimic](docs/plant.png) |
+
+### Operator tools
+
+| Fleet telematics | CAN bus monitor | Frame and boot timing |
+|---|---|---|
+| ![Fleet](docs/fleet.png) | ![CAN bus](docs/canbus.png) | ![Timing](docs/timing.png) |
+
+Every image above was captured by the application itself with `--solo`,
+which drops the chrome so one screen fills the window.
 
 ## Rendering
 
@@ -77,4 +107,13 @@ Emscripten version Qt was built against, 3.1.56 for Qt 6.8.
 ## Keys
 
 **1** to **9** select a screen. **Space** pauses the drive cycle.
-`--screen N` opens on one, `--shot file.png` captures it and exits.
+
+```
+--screen N              open on one screen
+--solo                  drop the chrome so the screen fills the window
+--shot out.png          capture once and exit
+--record p --frames 30 --every 90    write p_000.png .. and exit
+```
+
+Everything in this README was produced by those flags. No screen
+recorder, no editing.

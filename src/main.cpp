@@ -49,6 +49,15 @@ int main(int argc, char *argv[])
 
     const QString shotPath = option(QStringLiteral("--shot"));
 
+    // --record captures a frame sequence in one run, so an animation
+    // shows the real motion rather than stills stitched from separate
+    // launches, which would all start from the same point in the cycle.
+    const QString recordPrefix = option(QStringLiteral("--record"));
+    const int recordFrames = option(QStringLiteral("--frames")).toInt() > 0
+                           ? option(QStringLiteral("--frames")).toInt() : 24;
+    const int recordEvery = option(QStringLiteral("--every")).toInt() > 0
+                          ? option(QStringLiteral("--every")).toInt() : 80;
+
     // --solo drops the application chrome so a single screen fills the
     // window and reads as its own product rather than a tab in someone
     // else's demo. It is what the website embeds use.
@@ -85,7 +94,30 @@ int main(int argc, char *argv[])
     if (window)
         frames.attach(window);
 
-    if (window && !shotPath.isEmpty()) {
+    if (window && !recordPrefix.isEmpty()) {
+        auto *timer = new QTimer(&app);
+        auto *frame = new int(0);
+        // Let the scene settle before the first grab, or the opening
+        // frames catch the app mid-construction.
+        QTimer::singleShot(1800, &app, [=, &app]() {
+            timer->start(recordEvery);
+            QObject::connect(timer, &QTimer::timeout, &app, [=, &app]() {
+                const QImage img = window->grabWindow();
+                const QString name = QStringLiteral("%1_%2.png")
+                        .arg(recordPrefix)
+                        .arg(*frame, 3, 10, QChar('0'));
+                if (!img.isNull())
+                    img.save(name);
+                if (++(*frame) >= recordFrames) {
+                    timer->stop();
+                    qInfo("hmi: recorded %d frames to %s_NNN.png",
+                          recordFrames, qPrintable(recordPrefix));
+                    app.quit();
+                }
+            });
+        });
+    }
+    else if (window && !shotPath.isEmpty()) {
         // Long enough for the drive cycle to reach a speed worth
         // photographing and for the telltales to be lit.
         QTimer::singleShot(2500, &app, [window, shotPath, &app]() {
