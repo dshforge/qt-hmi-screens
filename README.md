@@ -8,9 +8,7 @@ conventions instead of a recoloured version of somebody else's.
 
 ## In motion
 
-`--record` writes a frame sequence in one go. Launching the app thirty
-times would give you thirty copies of the same frame, because the drive
-cycle restarts on every launch.
+`--record` writes a frame sequence in one go.
 
 | Instrument cluster | Patient monitor |
 |---|---|
@@ -21,7 +19,7 @@ cycle restarts on every launch.
 
 | Screen | Industry | What it demonstrates |
 |---|---|---|
-| Cluster | Automotive | ISO 2575 telltale colours, where red, amber, green and blue are a specification and not a palette |
+| Cluster | Automotive | ISO 2575 telltale colours, scene-graph needles inside a 16.7 ms frame |
 | Heavy | Off-highway plant | Same components, operator priorities: hydraulic temperature and load before road speed |
 | Climate | In-cabin controls | Touch targets sized for a moving vehicle |
 | Patient | Medical devices | ECG from a real PQRST complex, clinical colour convention, every value shown with its alarm limits |
