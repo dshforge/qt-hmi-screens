@@ -259,12 +259,6 @@ Rectangle {
             Readout { tag: "CONVERSION"; value: (91.4 - screen.t * 3.1).toFixed(1); unit: "%" }
             Readout { tag: "RUN TIME"; value: "412"; unit: "h" }
             Item { Layout.fillWidth: true }
-            Text {
-                Layout.alignment: Qt.AlignVCenter
-                text: "Concept mimic. Synthetic process values."
-                color: Theme.faint
-                font.family: Theme.faceData; font.pixelSize: 10
-            }
         }
     }
 }

@@ -8,7 +8,7 @@ import Screens.Backend
     Same components as the passenger cluster, different information
     priority: an operator cares about hydraulic temperature, DEF level
     and engine hours far more than road speed, and the panel is read in
-    direct sunlight through a dirty windscreen \u2014 hence the heavier
+    direct sunlight through a dirty windscreen, hence the heavier
     type and the larger touch targets.                               */
 Rectangle {
     id: screen

@@ -157,7 +157,7 @@ ApplicationWindow {
             }
             Item { Layout.fillWidth: true }
             Text {
-                text: "SIMULATED SOURCE  \u00B7  SWAP CanModel FOR QCanBusDevice ON TARGET"
+                text: "fake data, real render loop"
                 color: Theme.faint
                 font.family: Theme.faceData; font.pixelSize: 11; font.letterSpacing: 1.2
             }

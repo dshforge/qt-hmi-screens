@@ -20,7 +20,7 @@ Rectangle {
         RowLayout {
             Layout.fillWidth: true
             Text {
-                text: "FLEET OVERVIEW \u2014 DEPOT NORTH, " + Vehicle.fleet.rowCount() + " UNITS"
+                text: "DEPOT NORTH  \u00B7  " + Vehicle.fleet.rowCount() + " UNITS"
                 color: Theme.ink
                 font.family: Theme.faceUi; font.pixelSize: 15; font.bold: true
             }

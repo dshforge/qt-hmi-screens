@@ -21,7 +21,7 @@ Rectangle {
         RowLayout {
             Layout.fillWidth: true
             Text {
-                text: "TIMING \u2014 THIS APPLICATION, MEASURED ON ITSELF"
+                text: "TIMING  \u00B7  MEASURED ON ITSELF"
                 color: Theme.ink
                 font.family: Theme.faceUi; font.pixelSize: 15; font.bold: true
             }
@@ -118,8 +118,8 @@ Rectangle {
                 Text {
                     Layout.fillWidth: true
                     Layout.topMargin: 4
-                    text: "Anything past 16.7 ms missed the vsync deadline on a 60 Hz "
-                          + "panel. The mean hides these; the histogram does not."
+                    text: "Everything past 16.7 ms missed vsync. The average would "
+                          + "hide those. This does not."
                     color: Theme.faint
                     font.family: Theme.faceUi; font.pixelSize: 12
                     wrapMode: Text.WordWrap
@@ -167,9 +167,9 @@ Rectangle {
                 Text {
                     Layout.fillWidth: true
                     Layout.topMargin: 4
-                    text: "Budget 16.67 ms at 60 Hz. Boot budget 2000 ms \u2014 the "
-                          + "window most OEMs allow between ignition and a correct "
-                          + "cluster."
+                    text: "16.67 ms a frame at 60 Hz. 2000 ms to boot, roughly "
+                          + "what an OEM gives you between ignition and a cluster "
+                          + "somebody can trust."
                     color: Theme.faint
                     font.family: Theme.faceUi; font.pixelSize: 12
                     wrapMode: Text.WordWrap

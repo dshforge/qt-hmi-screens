@@ -3,15 +3,14 @@
 Nine Qt Quick screens across six industries, one C++ and QML codebase.
 Builds for Windows, macOS, Linux and the browser.
 
-A reference project for embedded and desktop HMI work: what the same
-codebase looks like when each industry's own conventions are respected
-rather than recoloured.
+What the same codebase looks like when each industry gets its own
+conventions instead of a recoloured version of somebody else's.
 
 ## In motion
 
-Captured from the running application, not mocked up. `--record` writes a
-frame sequence in a single run, so the motion is continuous rather than
-stills stitched together from separate launches.
+These come out of the running app. `--record` writes a frame sequence in
+one go, which matters: launching it thirty times gives you thirty copies
+of the same frame, because the drive cycle restarts every time.
 
 | Instrument cluster | Patient monitor |
 |---|---|
@@ -50,8 +49,8 @@ stills stitched together from separate launches.
 |---|---|---|
 | ![Fleet](docs/fleet.png) | ![CAN bus](docs/canbus.png) | ![Timing](docs/timing.png) |
 
-Every image above was captured by the application itself with `--solo`,
-which drops the chrome so one screen fills the window.
+All captured by the app with `--solo`, which drops the tab strip so the
+screen gets the whole window.
 
 ## Rendering
 
@@ -89,10 +88,10 @@ Cold starts, same binary, only `Loader.active` changed.
 `src/typography.h` resolves the font against families the machine
 actually has and logs its choice at startup.
 
-This project originally named "Segoe UI" and "Consolas" in 103 places.
-Both exist only on Windows. It built cleanly, ran at 60 fps and looked
-right. On macOS and Linux every one of those would have substituted
-silently, and nothing in the log would have said why.
+This started out naming "Segoe UI" and "Consolas" in 103 places. Both are
+Windows-only. It built, ran at 60 fps and looked completely fine. On a
+Mac or a Linux box every one of those would have quietly swapped for
+something else, with nothing in the log to tell you why.
 
 ## Build
 
@@ -115,5 +114,5 @@ Emscripten version Qt was built against, 3.1.56 for Qt 6.8.
 --record p --frames 30 --every 90    write p_000.png .. and exit
 ```
 
-Everything in this README was produced by those flags. No screen
-recorder, no editing.
+Everything here came out of those flags. No screen recorder, nothing
+touched up afterwards.

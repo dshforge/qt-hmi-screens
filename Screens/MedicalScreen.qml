@@ -171,7 +171,7 @@ Rectangle {
                 Item { Layout.fillHeight: true }
                 Text {
                     Layout.fillWidth: true
-                    text: "Concept screen. Not a medical device and not for clinical use."
+                    text: "nobody is in this bed. the numbers are made up."
                     color: Theme.faint
                     font.family: Theme.faceData; font.pixelSize: 10
                     wrapMode: Text.WordWrap

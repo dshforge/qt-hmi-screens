@@ -17,7 +17,7 @@ Rectangle {
         RowLayout {
             Layout.fillWidth: true
             Text {
-                text: "BUS MONITOR \u2014 CAN 1, 500 kbit/s"
+                text: "BUS MONITOR  \u00B7  CAN 1, 500 kbit/s"
                 color: Theme.ink
                 font.family: Theme.faceUi; font.pixelSize: 15; font.bold: true
             }
