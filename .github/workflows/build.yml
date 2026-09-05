@@ -1,0 +1,59 @@
+name: build
+
+# The point of this matrix is not CI hygiene. It is the answer to the
+# only question a C++ shop with a Windows-only UI actually asks:
+# "can you really ship our stack on the other two platforms?"
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: "Windows / MSVC",  os: windows-latest, host: windows }
+          - { name: "Linux / GCC",     os: ubuntu-latest,  host: linux }
+          - { name: "macOS / Clang",   os: macos-latest,   host: mac }
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt 6.8.3
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.3'
+          host: ${{ matrix.host }}
+          target: 'desktop'
+          modules: 'qtshadertools'
+          cache: true
+
+      - name: Install Ninja
+        uses: seanmiddleditch/gha-setup-ninja@v5
+
+      - name: Enable MSVC environment
+        if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Configure
+        run: cmake --preset release
+
+      - name: Build
+        run: cmake --build --preset release
+
+      - name: Smoke test (offscreen)
+        if: runner.os == 'Linux'
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libxkbcommon-x11-0 libxcb-cursor0 \
+            libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 \
+            libxcb-render-util0 libxcb-shape0 libxcb-xinerama0
+          timeout 30 ./build/sun47_cluster --screen 1 || true
