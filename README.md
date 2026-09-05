@@ -8,9 +8,9 @@ conventions instead of a recoloured version of somebody else's.
 
 ## In motion
 
-These come out of the running app. `--record` writes a frame sequence in
-one go, which matters: launching it thirty times gives you thirty copies
-of the same frame, because the drive cycle restarts every time.
+`--record` writes a frame sequence in one go. Launching the app thirty
+times would give you thirty copies of the same frame, because the drive
+cycle restarts on every launch.
 
 | Instrument cluster | Patient monitor |
 |---|---|
@@ -49,8 +49,7 @@ of the same frame, because the drive cycle restarts every time.
 |---|---|---|
 | ![Fleet](docs/fleet.png) | ![CAN bus](docs/canbus.png) | ![Timing](docs/timing.png) |
 
-All captured by the app with `--solo`, which drops the tab strip so the
-screen gets the whole window.
+`--solo` drops the tab strip so a screen gets the whole window.
 
 ## Rendering
 
@@ -113,6 +112,3 @@ Emscripten version Qt was built against, 3.1.56 for Qt 6.8.
 --shot out.png          capture once and exit
 --record p --frames 30 --every 90    write p_000.png .. and exit
 ```
-
-Everything here came out of those flags. No screen recorder, nothing
-touched up afterwards.
