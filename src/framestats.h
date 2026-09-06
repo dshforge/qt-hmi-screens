@@ -9,19 +9,16 @@
 
 class QQuickWindow;
 
-/*  Frame timing for this application, measured on itself.
+/*  Frame timing, measured on this application.
 
-    Automakers generally want the cluster showing correct values within
-    two seconds of ignition, and a 60 Hz panel gives you 16.7 ms a frame.
-    Both are worst-case numbers, so an average is the wrong statistic:
-    this keeps p95, p99 and the outright maximum, which are the ones a
-    reviewer will ask about.
+    An average is the wrong statistic for a frame budget, so this keeps
+    p95, p99 and the maximum.
 
-    frameSwapped is emitted on the render thread, so the timestamp is
-    taken there under a mutex rather than being queued to the GUI thread
-    first, which would measure event-loop latency instead of the frame.
-    QML is notified at 10 Hz, because a property update per frame would
-    itself become part of what is being measured.                     */
+    frameSwapped fires on the render thread, so the timestamp is taken
+    there under a mutex. Queueing it to the GUI thread first would
+    measure event-loop latency instead of the frame. QML is notified at
+    10 Hz: a property update per frame becomes part of what is being
+    measured.                                                        */
 class FrameStats : public QObject
 {
     Q_OBJECT

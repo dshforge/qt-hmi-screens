@@ -4,16 +4,9 @@ import QtQuick.Shapes
 import Screens
 import Screens.Backend
 
-/*  Process mimic.
-
-    A mimic is not a dashboard. The screen is a schematic of the plant,
-    and an operator navigates it the way they walk the site, so geometry
-    carries meaning: a pipe between two vessels means those vessels are
-    connected, and the flow animates in the direction the fluid moves.
-
-    Colour is state, never decoration. Running, standby, alarm. Anything
-    that is not one of those three is drawn in the neutral line colour so
-    the eye is never pulled by something that is merely present.        */
+/*  Process mimic. The layout follows the plant, not a grid: geometry is
+    the information here. Colour means state and only state, so anything
+    that is not running, standby or alarm stays on the neutral line.    */
 Rectangle {
     id: screen
     color: "#070A0E"
@@ -165,8 +158,6 @@ Rectangle {
         }
         Rectangle { Layout.fillWidth: true; height: 1; color: "#141C25" }
 
-        // ---------------- the mimic --------------------------------
-        //
         // The schematic is a fixed drawing, centred in whatever space it
         // gets. Stretching a mimic distorts the geometry, and on a mimic
         // the geometry is the information.

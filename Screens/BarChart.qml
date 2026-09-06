@@ -2,9 +2,8 @@ import QtQuick
 import QtQuick.Layouts
 import Screens
 
-/*  Horizontal bar chart over a labelled set of buckets. One scale
-    places every bar and the axis label, so a bar's length and the
-    number beside it can never disagree.                            */
+/*  Horizontal bars over labelled buckets. One scale places both the bar
+    and its axis label, so length and number cannot disagree.          */
 Item {
     id: root
 

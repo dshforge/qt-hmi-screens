@@ -42,7 +42,7 @@ QSGNode *WaveTrace::updatePaintNode(QSGNode *oldNode, UpdatePaintNodeData *)
     while (root->childCount() > (m_filled ? 2 : 1))
         delete root->childAtIndex(root->childCount() - 1);
 
-    // ---- area fill, drawn first so the stroke sits on top ------------
+    // area fill, drawn first so the stroke sits on top
     if (m_filled) {
         auto *fillNode = root->childCount() > 0
                        ? static_cast<QSGGeometryNode *>(root->childAtIndex(0)) : nullptr;
@@ -71,7 +71,7 @@ QSGNode *WaveTrace::updatePaintNode(QSGNode *oldNode, UpdatePaintNodeData *)
         fillNode->markDirty(QSGNode::DirtyGeometry);
     }
 
-    // ---- the stroke, expanded into a ribbon --------------------------
+    // the stroke, expanded into a ribbon
     const int strokeIndex = m_filled ? 1 : 0;
     auto *lineNode = root->childCount() > strokeIndex
                    ? static_cast<QSGGeometryNode *>(root->childAtIndex(strokeIndex)) : nullptr;

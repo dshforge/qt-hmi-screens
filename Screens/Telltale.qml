@@ -2,9 +2,9 @@ import QtQuick
 import QtQuick.Shapes
 import Screens
 
-/*  One telltale. `kind` selects the pictogram, `tint` comes from the
-    ISO 2575 group in Theme -- the two are set together at the call
-    site so a lamp cannot be given a colour its standard forbids.     */
+/*  One telltale. `kind` picks the pictogram and `tint` comes from the
+    ISO 2575 group in Theme. Both are set at the call site, so a lamp
+    cannot be given a colour its standard forbids.                    */
 Item {
     id: root
 
@@ -34,7 +34,6 @@ Item {
         }
     }
 
-    // ---- main beam -------------------------------------------------
     Component {
         id: beamIcon
         Item {
@@ -62,7 +61,6 @@ Item {
         }
     }
 
-    // ---- direction indicators --------------------------------------
     Component {
         id: leftIcon
         Shape {
@@ -87,7 +85,6 @@ Item {
         }
     }
 
-    // ---- brake: (!) between two brackets ---------------------------
     Component {
         id: brakeIcon
         Item {
@@ -126,7 +123,6 @@ Item {
         }
     }
 
-    // ---- ABS: brake symbol with lettering ---------------------------
     Component {
         id: absIcon
         Item {
@@ -165,7 +161,6 @@ Item {
         }
     }
 
-    // ---- coolant temperature ----------------------------------------
     Component {
         id: tempIcon
         Item {
@@ -200,7 +195,6 @@ Item {
         }
     }
 
-    // ---- low fuel ----------------------------------------------------
     Component {
         id: fuelIcon
         Item {
@@ -234,7 +228,6 @@ Item {
         }
     }
 
-    // ---- charging system ---------------------------------------------
     Component {
         id: battIcon
         Item {

@@ -3,9 +3,8 @@ import QtQuick.Layouts
 import Screens
 import Screens.Backend
 
-/*  Bus monitor. The model decodes frames and keeps a short history
-    per signal; the view only draws. Swapping the simulated source
-    for a QCanBusDevice is a change in CanModel, not in here.      */
+/*  Bus monitor. CanModel decodes and keeps the history, this only
+    draws, so a real QCanBusDevice changes nothing in here.       */
 Rectangle {
     color: Theme.bg
 

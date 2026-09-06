@@ -3,12 +3,9 @@ import QtQuick.Layouts
 import Screens
 import Screens.Backend
 
-/*  What this application does to itself, measured live.
-
-    Nearly every OEM wants a correct cluster within two seconds of
-    ignition, and a 60 Hz panel gives 16.7 ms a frame. Both are
-    worst-case numbers, so this screen leads with p99 and max and
-    puts the mean last.                                            */
+/*  The application measuring its own render loop. Two seconds to first
+    frame and 16.7 ms a frame are both worst-case numbers, so p99 and max
+    lead and the mean comes last.                                      */
 Rectangle {
     id: screen
     color: Theme.bg
@@ -34,7 +31,6 @@ Rectangle {
         }
         Rectangle { Layout.fillWidth: true; height: 1; color: Theme.rule }
 
-        // ---------------- headline figures --------------------------
         RowLayout {
             Layout.fillWidth: true
             spacing: 1
@@ -92,7 +88,6 @@ Rectangle {
             }
         }
 
-        // ---------------- distribution + budgets --------------------
         RowLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignTop

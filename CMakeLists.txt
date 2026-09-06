@@ -40,7 +40,7 @@ set(SCREENS_QML
     TimingScreen.qml
     MedicalScreen.qml
     InstrumentScreen.qml
-    ScadaScreen.qml
+    PlantScreen.qml
     ClimateScreen.qml
     HeavyScreen.qml
     BarChart.qml

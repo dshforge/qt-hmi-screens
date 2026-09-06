@@ -3,13 +3,9 @@ import QtQuick.Layouts
 import Screens
 import Screens.Backend
 
-/*  Off-highway / heavy equipment panel.
-
-    Same components as the passenger cluster, different information
-    priority: an operator cares about hydraulic temperature, DEF level
-    and engine hours far more than road speed, and the panel is read in
-    direct sunlight through a dirty windscreen, hence the heavier
-    type and the larger touch targets.                               */
+/*  Off-highway panel. Same components as the cluster, reordered for an
+    operator: hydraulic temperature, DEF and engine hours ahead of road
+    speed. Heavier type and larger targets, for sun and for gloves.   */
 Rectangle {
     id: screen
     color: Theme.bg

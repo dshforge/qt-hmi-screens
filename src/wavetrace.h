@@ -7,14 +7,12 @@
 
 /*  A fixed-scale waveform trace on the scene graph.
 
-    Sparkline auto-scales to whatever it is given, which is right for a
-    trend and wrong for anything clinical or metrological: an ECG that
-    rescales itself hides the amplitude change that mattered. This one
-    takes an explicit minY and maxY and never moves them, so two traces
-    on screen can honestly be compared against each other.
+    Sparkline auto-scales, which suits a trend and ruins anything
+    clinical: an ECG that rescales itself hides the amplitude change
+    that mattered. minY and maxY are explicit here and never move, so
+    two traces can be compared against each other.
 
-    Optional area fill under the curve, drawn as a second triangle strip
-    from the baseline, for spectra and envelopes.                       */
+    Optional area fill, a second triangle strip from the baseline.    */
 class WaveTrace : public QQuickItem
 {
     Q_OBJECT

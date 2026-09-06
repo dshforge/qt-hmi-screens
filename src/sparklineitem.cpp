@@ -44,7 +44,7 @@ QSGNode *SparklineItem::updatePaintNode(QSGNode *oldNode, UpdatePaintNodeData *)
         return nullptr;
     }
 
-    // --- map samples into the item's box -----------------------------
+    // map samples into the item's box
     qreal lo = m_samples.at(0).toReal();
     qreal hi = lo;
     for (int i = 1; i < n; ++i) {
@@ -68,7 +68,7 @@ QSGNode *SparklineItem::updatePaintNode(QSGNode *oldNode, UpdatePaintNodeData *)
         pts.emplace_back(float(x), float(y));
     }
 
-    // --- expand the polyline into a triangle strip --------------------
+    // expand the polyline into a triangle strip
     QSGGeometryNode *node = static_cast<QSGGeometryNode *>(oldNode);
     QSGGeometry *geom = nullptr;
 

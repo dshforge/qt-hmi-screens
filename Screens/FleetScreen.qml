@@ -3,9 +3,8 @@ import QtQuick.Layouts
 import Screens
 import Screens.Backend
 
-/*  Fleet list driven by a QAbstractListModel on the C++ side. The
-    delegate binds to roles, so adding a column is a role change and
-    not a rewrite of the view.                                      */
+/*  Fleet list over a QAbstractListModel. The delegate binds to roles,
+    so a new column is a role change and not a new view.            */
 Rectangle {
     id: screen
     color: Theme.bg
@@ -43,7 +42,6 @@ Rectangle {
                 Layout.fillHeight: true
                 spacing: 0
 
-                // ---- header row ----
                 RowLayout {
                     Layout.fillWidth: true
                     Layout.bottomMargin: 8
@@ -146,7 +144,6 @@ Rectangle {
                 }
             }
 
-            // ---------------- detail pane ----------------------------
             Rectangle {
                 Layout.preferredWidth: 260
                 Layout.fillHeight: true

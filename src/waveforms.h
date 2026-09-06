@@ -7,16 +7,12 @@
 #include <QtMath>
 #include <QRandomGenerator>
 
-/*  Synthetic sources for the medical and instrument screens.
+/*  Sources for the medical and instrument screens.
 
-    The ECG is built from the actual shape of a PQRST complex rather than
-    a sine wave, because a clinician recognises the wrong one instantly
-    and the whole point of showing this screen is that the domain was
-    taken seriously.
-
-    The spectrum is a noise floor with a few real peaks on it, which is
-    what an analyser display has to lay out well: a wide dynamic range
-    where the interesting part is often near the floor.                 */
+    The ECG is a PQRST complex, not a sine wave: a clinician spots the
+    wrong shape immediately. The spectrum is a noise floor with a few
+    peaks on it, which is the case an analyser display has to lay out
+    well.                                                            */
 class Waveforms : public QObject
 {
     Q_OBJECT
@@ -74,7 +70,7 @@ private slots:
     {
         const qreal t = m_clock.elapsed() / 1000.0;
 
-        // --- ECG: a PQRST complex placed on a beat phase --------------
+        // ECG: a PQRST complex placed on a beat phase
         const qreal beat = 60.0 / m_hr;
         for (int step = 0; step < kStep; ++step) {
             m_phase += 0.04 / kStep;
@@ -87,7 +83,7 @@ private slots:
             m_resp.append(0.5 + 0.42 * qSin(2 * M_PI * (t / (60.0 / m_rr))));
         }
 
-        // --- spectrum: noise floor with a few honest peaks ------------
+        // spectrum: noise floor with a few honest peaks
         for (int i = 0; i < kBins; ++i) {
             const qreal f = qreal(i) / kBins;
             qreal v = -104.0 + QRandomGenerator::global()->bounded(60) / 10.0;

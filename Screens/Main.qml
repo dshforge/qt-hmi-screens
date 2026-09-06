@@ -29,7 +29,7 @@ ApplicationWindow {
     Component { id: cClimate;  ClimateScreen {} }
     Component { id: cMedical;    MedicalScreen {} }
     Component { id: cInstrument; InstrumentScreen {} }
-    Component { id: cScada;      ScadaScreen {} }
+    Component { id: cPlant;      PlantScreen {} }
     Component { id: cFleet;      FleetScreen {} }
     Component { id: cCan;      CanScreen {} }
     Component { id: cTiming;   TimingScreen {} }
@@ -48,7 +48,6 @@ ApplicationWindow {
         anchors.margins: app.solo ? 0 : 10
         spacing: app.solo ? 0 : 8
 
-        // ---------------- bezel header ----------------------------
         RowLayout {
             visible: !app.solo
             Layout.preferredHeight: app.solo ? 0 : implicitHeight
@@ -108,7 +107,6 @@ ApplicationWindow {
             }
         }
 
-        // ---------------- screen ----------------------------------
         Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -135,14 +133,13 @@ ApplicationWindow {
                 LazyScreen { slot: 2; sourceComponent: cClimate }
                 LazyScreen { slot: 3; sourceComponent: cMedical }
                 LazyScreen { slot: 4; sourceComponent: cInstrument }
-                LazyScreen { slot: 5; sourceComponent: cScada }
+                LazyScreen { slot: 5; sourceComponent: cPlant }
                 LazyScreen { slot: 6; sourceComponent: cFleet }
                 LazyScreen { slot: 7; sourceComponent: cCan }
                 LazyScreen { slot: 8; sourceComponent: cTiming }
             }
         }
 
-        // ---------------- bezel footer ----------------------------
         RowLayout {
             visible: !app.solo
             Layout.preferredHeight: app.solo ? 0 : implicitHeight

@@ -5,16 +5,14 @@
 #include <QColor>
 #include <QtQml/qqmlregistration.h>
 
-/*  A rolling trace rendered straight into the scene graph.
+/*  A rolling trace built straight into the scene graph.
 
-    The obvious QML answer is Canvas, but Canvas keeps an FBO per item
-    and repaints it on the GUI thread; eight of them in a list is eight
-    render targets and eight paint calls per tick. This builds one
-    triangle strip per trace on the render thread instead.
+    Canvas keeps an FBO per item and repaints on the GUI thread, so
+    eight in a list is eight render targets and eight paint calls a
+    tick. This builds one triangle strip per trace on the render thread.
 
-    Line width is done as geometry rather than by asking for a thick
-    GL line: D3D11 ignores line width entirely, so a wide line strip
-    renders one pixel wide on Windows and looks fine on nothing else. */
+    Line width is geometry, not a thick GL line: D3D11 ignores line
+    width, so a wide strip renders one pixel wide on Windows.        */
 class SparklineItem : public QQuickItem
 {
     Q_OBJECT

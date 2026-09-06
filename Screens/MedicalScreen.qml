@@ -3,13 +3,8 @@ import QtQuick.Layouts
 import Screens
 import Screens.Backend
 
-/*  Patient monitor.
-
-    A different industry means a different set of rules, not a recoloured
-    cluster. Here the colours are the ones clinicians already read: green
-    for ECG, cyan for pleth, yellow for respiration. Numbers are enormous
-    because they are read across a room. Alarm limits sit beside every
-    value, because a number without its limits is not clinical data.   */
+/*  Patient monitor. Colour follows clinical convention: green ECG, cyan
+    pleth, yellow respiration. Every value carries its alarm limits.   */
 Rectangle {
     id: screen
     color: "#04070A"
@@ -57,7 +52,6 @@ Rectangle {
         anchors.margins: 14
         spacing: 14
 
-        // ---------------- waveform stack --------------------------
         ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -122,7 +116,6 @@ Rectangle {
             }
         }
 
-        // ---------------- vitals column ---------------------------
         Rectangle {
             Layout.preferredWidth: 250
             Layout.fillHeight: true

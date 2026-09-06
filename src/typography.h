@@ -4,14 +4,12 @@
 #include <QFontDatabase>
 #include <QStringList>
 
-/*  Picks a font family that the machine actually has.
+/*  Picks a font family the machine actually has.
 
-    Naming "Segoe UI" and stopping there is a Windows-only decision:
-    on Linux and macOS the request fails silently, Qt substitutes
-    something, and the type scale drifts with nothing in the log to
-    say why. This resolves against QFontDatabase once at startup and
-    reports what it chose, so a wrong-looking build on another
-    platform is one line of output away from an explanation.        */
+    Naming "Segoe UI" and stopping there fails silently off Windows: Qt
+    substitutes something and the type scale drifts with nothing in the
+    log to say why. Resolved against QFontDatabase once at startup, and
+    the choice is logged.                                            */
 class Typography : public QObject
 {
     Q_OBJECT

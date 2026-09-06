@@ -6,12 +6,9 @@
 #include <QVariantList>
 #include <QtMath>
 
-/*  Decoded CAN signals with a short rolling history each.
-
-    The simulated source lives behind `tick()`. On a target this class
-    keeps its interface and `tick()` is replaced by the readyRead
-    handler of a QCanBusDevice -- the model, the roles and the view
-    above it do not change.                                          */
+/*  Decoded CAN signals with a short rolling history each. The source
+    sits behind tick(), which a QCanBusDevice readyRead handler replaces
+    without the roles or the view changing.                          */
 class CanModel : public QAbstractListModel
 {
     Q_OBJECT

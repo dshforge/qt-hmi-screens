@@ -3,13 +3,8 @@ import QtQuick.Layouts
 import Screens
 import Screens.Backend
 
-/*  Spectrum analyser.
-
-    Third industry, third set of rules. Test and measurement wants a wide
-    dynamic range where the interesting signal often sits close to the
-    noise floor, so the grid is logarithmic in dBm, the graticule is
-    always visible, and a marker reads out an exact value rather than
-    inviting anyone to estimate from the picture.                       */
+/*  Spectrum analyser. Logarithmic dBm scale, because the signal of
+    interest usually sits near the noise floor. 10 x 8 graticule.       */
 Rectangle {
     id: screen
     color: "#05080B"
@@ -44,7 +39,6 @@ Rectangle {
             }
         }
 
-        // ---------------- graticule + trace ------------------------
         Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true

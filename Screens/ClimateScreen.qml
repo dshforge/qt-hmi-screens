@@ -2,12 +2,9 @@ import QtQuick
 import QtQuick.Layouts
 import Screens
 
-/*  Dual-zone climate control.
-
-    The setpoints live here rather than in C++ on purpose: until this is
-    bound to a real HVAC controller they are view state, not vehicle
-    state, and pushing them down would invent a model that has nothing
-    behind it yet. The binding point is one property per control.     */
+/*  Dual-zone climate control. Setpoints live here rather than in C++:
+    until this is bound to an HVAC controller they are view state, and
+    the binding point is one property per control.                    */
 Rectangle {
     id: screen
     color: Theme.bg
@@ -129,8 +126,6 @@ Rectangle {
         }
         Rectangle { Layout.fillWidth: true; height: 1; color: Theme.rule }
 
-        // ---------------- the two zones -----------------------------
-        //
         // The zones sit in bare Items rather than filling the row
         // directly: a ColumnLayout carries its content's implicit
         // width into the parent layout, and the wider of the two then
@@ -176,7 +171,6 @@ Rectangle {
             }
         }
 
-        // ---------------- fan ---------------------------------------
         ColumnLayout {
             Layout.fillWidth: true
             Layout.topMargin: 8
@@ -208,7 +202,6 @@ Rectangle {
             }
         }
 
-        // ---------------- modes and toggles -------------------------
         RowLayout {
             Layout.fillWidth: true
             Layout.topMargin: 6

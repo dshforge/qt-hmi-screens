@@ -3,10 +3,9 @@ import QtQuick.Layouts
 import Screens
 import Screens.Backend
 
-/*  The cluster. Reads state, renders it, owns no vehicle logic.
-    Frame time comes from FrameAnimation, which is driven by the
-    scene graph's own swap -- so the number on screen is the render
-    loop measuring itself, not a guess.                            */
+/*  The cluster. Reads state, renders it, owns no vehicle logic. Frame
+    time comes from FrameAnimation, driven by the scene graph's own
+    swap, so the figure on screen is measured and not estimated.     */
 Rectangle {
     id: screen
     color: Theme.bg
@@ -18,7 +17,6 @@ Rectangle {
         anchors.margins: 18
         spacing: 12
 
-        // ---------------- telltale bar ----------------------------
         RowLayout {
             Layout.fillWidth: true
             spacing: 16
@@ -49,7 +47,6 @@ Rectangle {
 
         Rectangle { Layout.fillWidth: true; height: 1; color: Theme.rule }
 
-        // ---------------- gauges ----------------------------------
         RowLayout {
             id: gaugeRow
             Layout.fillWidth: true
@@ -70,7 +67,6 @@ Rectangle {
                 subCaption: "x1000"
             }
 
-            // ---------------- centre readout ----------------------
             ColumnLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
@@ -143,7 +139,6 @@ Rectangle {
 
         Rectangle { Layout.fillWidth: true; height: 1; color: Theme.rule }
 
-        // ---------------- footer ----------------------------------
         RowLayout {
             Layout.fillWidth: true
             spacing: 30

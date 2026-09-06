@@ -11,14 +11,11 @@
 
 /*  Vehicle state for the cluster.
 
-    All the fast-moving values share one `stateChanged` signal and are
-    published together at the end of a tick. That is deliberate: a
-    cluster should never render a frame built from half of one sample
-    and half of the next, and per-property notifiers make that easy to
-    do by accident.
+    Every fast-moving value shares one `stateChanged` and is published at
+    the end of a tick. Per-property notifiers would let a frame be built
+    from half of one sample and half of the next.
 
-    On a target, tick() is fed by the bus instead of the drive cycle;
-    the properties and everything above them stay as they are.       */
+    On a target, tick() is fed by the bus instead of the drive cycle. */
 class Vehicle : public QObject
 {
     Q_OBJECT

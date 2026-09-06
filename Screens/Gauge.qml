@@ -2,9 +2,8 @@ import QtQuick
 import QtQuick.Shapes
 import Screens
 
-/*  Arc gauge drawn with Qt Quick Shapes, so the sweep is a real
-    GPU-batched path rather than a repainted Canvas. Everything is
-    driven off `value`; nothing in here knows what it is measuring.  */
+/*  Arc gauge in Qt Quick Shapes, so the sweep is a GPU-batched path
+    rather than a repainted Canvas. Driven entirely off `value`.     */
 Item {
     id: root
 
@@ -78,7 +77,6 @@ Item {
         }
     }
 
-    // --- minor ticks ------------------------------------------------
     Repeater {
         model: root.majorTicks * 4
         delegate: Rectangle {
@@ -96,7 +94,6 @@ Item {
         }
     }
 
-    // --- major ticks + labels ---------------------------------------
     Repeater {
         model: root.majorTicks + 1
         delegate: Item {
@@ -127,7 +124,6 @@ Item {
         }
     }
 
-    // --- captions ----------------------------------------------------
     Column {
         anchors.horizontalCenter: parent.horizontalCenter
         y: root.cy + root.radius * 0.36
@@ -150,7 +146,6 @@ Item {
         }
     }
 
-    // --- needle ------------------------------------------------------
     Item {
         x: root.cx
         y: root.cy

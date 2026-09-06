@@ -28,13 +28,8 @@ int main(int argc, char *argv[])
     fmt.setSamples(4);
     QSurfaceFormat::setDefaultFormat(fmt);
 
-    // --screen <n> opens straight onto one screen, numbered the same
-    // way as the keyboard shortcuts: 1 is the cluster. Two numbering
-    // schemes for the same eight screens is a bug waiting to be filed.
-    //
-    // --shot <path> grabs the window once it has settled and exits, so
-    // stills come out of the application itself instead of a desktop
-    // capture that can pick up whatever is in front of it.
+    // --screen is 1-based, to match the keyboard shortcuts. Two numbering
+    // schemes for the same screens is a bug waiting to happen.
     const QStringList args = app.arguments();
 
     auto option = [&args](const QString &name) -> QString {
@@ -49,26 +44,23 @@ int main(int argc, char *argv[])
 
     const QString shotPath = option(QStringLiteral("--shot"));
 
-    // --record captures a frame sequence in one run, so an animation
-    // shows the real motion rather than stills stitched from separate
-    // launches, which would all start from the same point in the cycle.
+    // --record does one sequence per run. Separate launches all restart
+    // the drive cycle at the same point.
     const QString recordPrefix = option(QStringLiteral("--record"));
     const int recordFrames = option(QStringLiteral("--frames")).toInt() > 0
                            ? option(QStringLiteral("--frames")).toInt() : 24;
     const int recordEvery = option(QStringLiteral("--every")).toInt() > 0
                           ? option(QStringLiteral("--every")).toInt() : 80;
 
-    // --solo drops the application chrome so a single screen fills the
-    // window and reads as its own product rather than a tab in someone
-    // else's demo. It is what the website embeds use.
+    // --solo drops the chrome so one screen fills the window.
     const bool solo = args.contains(QStringLiteral("--solo"));
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty(QStringLiteral("startScreen"), startScreen);
     engine.rootContext()->setContextProperty(QStringLiteral("soloMode"), solo);
 
-    // Owned by the application rather than the QML engine, because they
-    // run timers for the whole process lifetime.
+    // Owned by the application, not the engine: these run timers for the
+    // whole process lifetime.
     Vehicle vehicle;
     FrameStats frames;
     Typography typography;
@@ -118,8 +110,7 @@ int main(int argc, char *argv[])
         });
     }
     else if (window && !shotPath.isEmpty()) {
-        // Long enough for the drive cycle to reach a speed worth
-        // photographing and for the telltales to be lit.
+        // Far enough into the drive cycle for the telltales to be lit.
         QTimer::singleShot(2500, &app, [window, shotPath, &app]() {
             const QImage shot = window->grabWindow();
             if (!shot.isNull() && shot.save(shotPath))
@@ -131,8 +122,7 @@ int main(int argc, char *argv[])
         });
     }
 
-    // Worth having in the log on a target too: boot-to-first-frame is
-    // the number a programme gets held to, and it regresses quietly.
+    // Boot-to-first-frame regresses quietly, so it goes in the log.
     QObject::connect(&frames, &FrameStats::bootChanged, &app, [&frames]() {
         qInfo("hmi: boot to first frame %.0f ms", frames.bootMs());
     });
